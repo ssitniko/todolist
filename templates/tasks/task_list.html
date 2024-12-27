@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<form action="/tasks/" method="get", enctype="multipart/form-data">
+  {{form.as_p}}
+  <button type="submit">Search</button>
+</form>
+{%for task in tasks%}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{task.title}}</h5>
+      <p class="card-text">{{task.description}}</p>
+      <p class="card-text" style="color: blue;">{{task.created_at}}</p>
+      
+    </div>
+  </div>
+{%endfor%}
+<div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 40px">
+{% for i in max_pages %}
+{% if request.GET%}
+<a class="btn btn-primary" href="{{request.get_full_path}}&page={{i}}">{{i}}</a>
+{% else %}
+  <a href="/tasks/?page={{ i }}" class="btn btn-primary">
+      {{ i }}
+  </a>
+{% endif %}
+{% endfor %} 
+</div>
+{%endblock%}

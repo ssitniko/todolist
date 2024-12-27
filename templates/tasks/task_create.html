@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="tasks" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type='submit'>Create task</button>
+    
+</form>
+        
+{% endblock %}
